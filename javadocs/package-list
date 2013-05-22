@@ -2,4 +2,5 @@ ezdb
 ezdb.comparator
 ezdb.leveldb
 ezdb.serde
+ezdb.treemap
 ezdb.util
