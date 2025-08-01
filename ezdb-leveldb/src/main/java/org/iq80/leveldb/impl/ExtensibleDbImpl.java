@@ -45,8 +45,6 @@ import org.iq80.leveldb.ReadOptions;
 import org.iq80.leveldb.Snapshot;
 import org.iq80.leveldb.WriteBatch;
 import org.iq80.leveldb.WriteOptions;
-import org.iq80.leveldb.compression.Compressions;
-import org.iq80.leveldb.compression.Compressor;
 import org.iq80.leveldb.env.DbLock;
 import org.iq80.leveldb.env.Env;
 import org.iq80.leveldb.env.File;
@@ -72,6 +70,7 @@ import org.iq80.leveldb.util.Slice;
 import org.iq80.leveldb.util.SliceInput;
 import org.iq80.leveldb.util.SliceOutput;
 import org.iq80.leveldb.util.Slices;
+import org.iq80.leveldb.util.Snappy;
 
 import com.google.common.annotations.VisibleForTesting;
 import com.google.common.base.Preconditions;
@@ -97,7 +96,6 @@ public class ExtensibleDbImpl implements DB {
 	protected final SnapshotList snapshots = new SnapshotList(mutex);
 	protected final WriteBatchImpl tmpBatch = new WriteBatchImpl();
 	protected final Env env;
-	protected final Compressor compressor;
 
 	protected LogWriter log;
 
@@ -122,8 +120,7 @@ public class ExtensibleDbImpl implements DB {
 		this.options = sanitizeOptions(databaseDir, rawOptions);
 		this.ownsLogger = this.options.logger() != rawOptions.logger();
 
-		this.compressor = Compressions.tryToGetCompressor(this.options.compressionType());
-		if (compressor == null) {
+		if (this.options.compressionType() == CompressionType.SNAPPY && !Snappy.available()) {
 			// Disable snappy if it's not available.
 			this.options.compressionType(CompressionType.NONE);
 		}
@@ -157,7 +154,7 @@ public class ExtensibleDbImpl implements DB {
 		// Reserve ten files or so for other uses and give the rest to TableCache.
 		final int tableCacheSize = options.maxOpenFiles() - DbConstants.NUM_NON_TABLE_CACHE_FILES;
 		tableCache = new TableCache(databaseDir, tableCacheSize, new InternalUserComparator(internalKeyComparator),
-				options, env, Compressions.decompressor());
+				options, env);
 
 		// create the version set
 
@@ -1208,7 +1205,7 @@ public class ExtensibleDbImpl implements DB {
 			InternalKey largest = null;
 			try (WritableFile writableFile = env.newWritableFile(file)) {
 				final TableBuilder tableBuilder = new TableBuilder(options, writableFile,
-						new InternalUserComparator(internalKeyComparator), compressor);
+						new InternalUserComparator(internalKeyComparator));
 
 				try (InternalIterator it = data.iterator()) {
 					for (boolean valid = it.seekToFirst(); valid; valid = it.next()) {
@@ -1381,7 +1378,7 @@ public class ExtensibleDbImpl implements DB {
 		final File file = databaseDir.child(Filename.tableFileName(fileNumber));
 		compactionState.outfile = env.newWritableFile(file);
 		compactionState.builder = new TableBuilder(options, compactionState.outfile,
-				new InternalUserComparator(internalKeyComparator), compressor);
+				new InternalUserComparator(internalKeyComparator));
 	}
 
 	private void finishCompactionOutputFile(final CompactionState compactionState) throws IOException {
