@@ -4,8 +4,7 @@ import java.nio.ByteBuffer;
 import java.util.Comparator;
 import java.util.Map.Entry;
 
-import org.iq80.leveldb.util.Slice;
-
+import ezdb.leveldb.internal.org.iq80.leveldb.util.Slice;
 import ezdb.serde.Serde;
 import ezdb.table.RawTableRow;
 import ezdb.table.range.RawRangeTableRow;

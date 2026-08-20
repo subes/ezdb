@@ -7,11 +7,10 @@ import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.iq80.leveldb.Options;
-
 import ezdb.Db;
 import ezdb.DbException;
 import ezdb.comparator.LexicographicalComparator;
+import ezdb.leveldb.internal.org.iq80.leveldb.Options;
 import ezdb.leveldb.table.EzLevelDbTable;
 import ezdb.leveldb.table.range.EzLevelDbRangeTable;
 import ezdb.serde.Serde;

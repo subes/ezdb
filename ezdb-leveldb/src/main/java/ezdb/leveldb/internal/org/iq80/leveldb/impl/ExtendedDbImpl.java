@@ -1,21 +1,26 @@
-package org.iq80.leveldb.impl;
+package ezdb.leveldb.internal.org.iq80.leveldb.impl;
 
 import java.io.IOException;
 
-import org.iq80.leveldb.DBException;
-import org.iq80.leveldb.Options;
-import org.iq80.leveldb.ReadOptions;
-import org.iq80.leveldb.Snapshot;
-import org.iq80.leveldb.WriteOptions;
-import org.iq80.leveldb.env.Env;
-import org.iq80.leveldb.iterator.ExtendedDBIteratorAdapter;
-import org.iq80.leveldb.iterator.InternalIterator;
-import org.iq80.leveldb.iterator.SnapshotSeekingIterator;
-import org.iq80.leveldb.table.BytewiseComparator;
-import org.iq80.leveldb.table.ExtendedCustomUserComparator;
-import org.iq80.leveldb.table.UserComparator;
-import org.iq80.leveldb.util.Slice;
-
+import ezdb.leveldb.internal.org.iq80.leveldb.DBException;
+import ezdb.leveldb.internal.org.iq80.leveldb.Options;
+import ezdb.leveldb.internal.org.iq80.leveldb.ReadOptions;
+import ezdb.leveldb.internal.org.iq80.leveldb.Snapshot;
+import ezdb.leveldb.internal.org.iq80.leveldb.WriteOptions;
+import ezdb.leveldb.internal.org.iq80.leveldb.env.Env;
+import ezdb.leveldb.internal.org.iq80.leveldb.impl.LookupKey;
+import ezdb.leveldb.internal.org.iq80.leveldb.impl.LookupResult;
+import ezdb.leveldb.internal.org.iq80.leveldb.impl.MemTable;
+import ezdb.leveldb.internal.org.iq80.leveldb.impl.ReadStats;
+import ezdb.leveldb.internal.org.iq80.leveldb.impl.Version;
+import ezdb.leveldb.internal.org.iq80.leveldb.impl.WriteBatchImpl;
+import ezdb.leveldb.internal.org.iq80.leveldb.iterator.InternalIterator;
+import ezdb.leveldb.internal.org.iq80.leveldb.iterator.SnapshotSeekingIterator;
+import ezdb.leveldb.internal.org.iq80.leveldb.table.BytewiseComparator;
+import ezdb.leveldb.internal.org.iq80.leveldb.table.UserComparator;
+import ezdb.leveldb.internal.org.iq80.leveldb.util.Slice;
+import ezdb.leveldb.internal.org.iq80.leveldb.iterator.ExtendedDBIteratorAdapter;
+import ezdb.leveldb.internal.org.iq80.leveldb.table.ExtendedCustomUserComparator;
 import ezdb.leveldb.util.ZeroCopyDBComparator;
 
 @SuppressWarnings("AccessingNonPublicFieldOfAnotherObject")

@@ -33,9 +33,8 @@ package ezdb.leveldb.util;
 
 import java.util.NoSuchElementException;
 
-import org.iq80.leveldb.iterator.ExtendedDBIteratorAdapter;
-import org.iq80.leveldb.util.Slice;
-
+import ezdb.leveldb.internal.org.iq80.leveldb.util.Slice;
+import ezdb.leveldb.internal.org.iq80.leveldb.iterator.ExtendedDBIteratorAdapter;
 import ezdb.serde.Serde;
 import ezdb.table.RawTableRow;
 

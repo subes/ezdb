@@ -14,7 +14,6 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.List;
 
-import org.iq80.leveldb.fileenv.FileUtils;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -23,6 +22,7 @@ import com.google.common.io.CharStreams;
 
 import ezdb.Db;
 import ezdb.comparator.SerdeComparator;
+import ezdb.leveldb.internal.org.iq80.leveldb.fileenv.FileUtils;
 import ezdb.serde.DateSerde;
 import ezdb.serde.Serde;
 import ezdb.serde.SerializingSerde;

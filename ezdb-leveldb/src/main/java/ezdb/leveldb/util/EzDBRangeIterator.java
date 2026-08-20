@@ -3,8 +3,7 @@ package ezdb.leveldb.util;
 import java.io.Closeable;
 import java.util.Iterator;
 
-import org.iq80.leveldb.util.Slice;
-
+import ezdb.leveldb.internal.org.iq80.leveldb.util.Slice;
 import ezdb.table.range.RawRangeTableRow;
 
 //implementation taken from leveldbjni

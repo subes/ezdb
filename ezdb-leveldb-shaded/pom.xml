@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>com.github.criccomini</groupId>
+		<artifactId>ezdb-parent</artifactId>
+		<version>0.1.19</version>
+	</parent>
+
+	<artifactId>ezdb-leveldb-shaded</artifactId>
+	<name>EZDB LevelDB shaded</name>
+	<packaging>jar</packaging>
+
+	<dependencies>
+		<dependency>
+			<groupId>io.github.pcmind</groupId>
+			<artifactId>leveldb</artifactId>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<!-- create a fat-jar -->
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-shade-plugin</artifactId>
+				<version>3.6.1</version>
+				<executions>
+					<!-- This is the missing piece! -->
+					<execution>
+						<phase>package</phase>
+						<goals>
+							<goal>shade</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<shadedArtifactAttached>false</shadedArtifactAttached>
+					<createDependencyReducedPom>true</createDependencyReducedPom>
+					
+					<!-- Strictly limit what gets unpacked into the shaded JAR -->
+					<artifactSet>
+						<includes>
+							<!-- Include the main implementation -->
+							<include>io.github.pcmind:leveldb</include>
+							<!-- Include the API module (interfaces/annotations) -->
+							<include>io.github.pcmind:leveldb-api</include>
+						</includes>
+					</artifactSet>
+
+					<relocations>
+						<relocation>
+							<pattern>org.iq80.leveldb</pattern>
+							<shadedPattern>ezdb.leveldb.internal.org.iq80.leveldb</shadedPattern>
+							<includes>
+								<include>org.iq80.leveldb.**</include>
+							</includes>
+						</relocation>
+					</relocations>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+</project>

@@ -1,9 +1,9 @@
-package org.iq80.leveldb.table;
+package ezdb.leveldb.internal.org.iq80.leveldb.table;
 
 import static java.util.Objects.requireNonNull;
 
-import org.iq80.leveldb.util.Slice;
-
+import ezdb.leveldb.internal.org.iq80.leveldb.table.UserComparator;
+import ezdb.leveldb.internal.org.iq80.leveldb.util.Slice;
 import ezdb.leveldb.util.ZeroCopyDBComparator;
 
 public class ExtendedCustomUserComparator implements UserComparator {

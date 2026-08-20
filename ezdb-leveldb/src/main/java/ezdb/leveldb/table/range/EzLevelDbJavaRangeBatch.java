@@ -2,9 +2,8 @@ package ezdb.leveldb.table.range;
 
 import java.io.IOException;
 
-import org.iq80.leveldb.impl.ExtendedDbImpl;
-import org.iq80.leveldb.impl.WriteBatchImpl;
-
+import ezdb.leveldb.internal.org.iq80.leveldb.impl.WriteBatchImpl;
+import ezdb.leveldb.internal.org.iq80.leveldb.impl.ExtendedDbImpl;
 import ezdb.serde.Serde;
 import ezdb.table.range.RangeBatch;
 import ezdb.util.Util;

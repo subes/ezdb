@@ -3,8 +3,7 @@ package ezdb.leveldb.table;
 import java.nio.ByteBuffer;
 import java.util.Comparator;
 
-import org.iq80.leveldb.util.Slice;
-
+import ezdb.leveldb.internal.org.iq80.leveldb.util.Slice;
 import ezdb.leveldb.util.Slices;
 import ezdb.leveldb.util.ZeroCopyDBComparator;
 

@@ -6,14 +6,13 @@ import java.nio.ByteBuffer;
 import java.util.Comparator;
 import java.util.NoSuchElementException;
 
-import org.iq80.leveldb.Options;
-import org.iq80.leveldb.ReadOptions;
-import org.iq80.leveldb.WriteOptions;
-import org.iq80.leveldb.impl.ExtendedDbImpl;
-import org.iq80.leveldb.util.Slice;
-
 import ezdb.DbException;
+import ezdb.leveldb.internal.org.iq80.leveldb.Options;
+import ezdb.leveldb.internal.org.iq80.leveldb.ReadOptions;
+import ezdb.leveldb.internal.org.iq80.leveldb.WriteOptions;
+import ezdb.leveldb.internal.org.iq80.leveldb.util.Slice;
 import ezdb.leveldb.EzLevelDbJavaFactory;
+import ezdb.leveldb.internal.org.iq80.leveldb.impl.ExtendedDbImpl;
 import ezdb.leveldb.util.EzLevelDBIterator;
 import ezdb.leveldb.util.Slices;
 import ezdb.serde.Serde;

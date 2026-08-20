@@ -1,10 +1,12 @@
-package org.iq80.leveldb.iterator;
+package ezdb.leveldb.internal.org.iq80.leveldb.iterator;
 
 import java.io.Closeable;
 import java.util.concurrent.atomic.AtomicBoolean;
 
-import org.iq80.leveldb.DBException;
-import org.iq80.leveldb.util.Slice;
+import ezdb.leveldb.internal.org.iq80.leveldb.DBException;
+import ezdb.leveldb.internal.org.iq80.leveldb.iterator.Direction;
+import ezdb.leveldb.internal.org.iq80.leveldb.iterator.SnapshotSeekingIterator;
+import ezdb.leveldb.internal.org.iq80.leveldb.util.Slice;
 
 public class ExtendedDBIteratorAdapter implements Closeable {
 
